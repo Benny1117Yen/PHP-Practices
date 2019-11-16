@@ -3,20 +3,15 @@
 /*
 這裡做 function interface.
 */
-interface ArticleInterface {
+interface FunctionInterface {
     public function getArticle($blog);
-    // public function Exception();
-}
-
-interface BlogInterface {
     public function sendBlog($user);
-    // public function Exception();
 }
 
 /*
 Function implements from interface.
 */
-class FunctionInterface1 implements ArticleInterface {
+class Functions implements FunctionInterface {
     public function getArticle($blog) {
         if ($blog = "PJs") {
             $articlename = "Quiz1";
@@ -24,9 +19,6 @@ class FunctionInterface1 implements ArticleInterface {
         }
         return 1;
     }
-}
-
-class FunctionInterface2 implements BlogInterface {
     public function sendBlog($user) {
         if ($user = "root") {
             $blogname = "PJs";
@@ -79,11 +71,12 @@ Fixed function.
 function getUserArticles($user_id, $article_id) { 
     echo $user_id.', '.$article_id.'<br />'; // SYSTEM, 0123
     if ($user_id && $article_id) {
-        if ($user = User::getUser($user_id) != 1) { checkUser($user);}
-        $blog = new FunctionInterface2();
+        $user = User::getUser($user_id);
+        if ($user != 1) { checkUser($user);}
+        $blog = new Functions();
         $blockname = $blog -> sendBlog($user);
         if ($blockname != 1) { checkBlog($blockname);}
-        $article = new FunctionInterface1();
+        $article = new Functions();
         $articlename = $article -> getArticle($blog);
         if ($articlename != 1) { checkArticle($articlename);}
     }
