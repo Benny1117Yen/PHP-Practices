@@ -52,54 +52,40 @@ Exception handling.
 */
 function checkArticle($status) {
     if ($status) {
-        throw new Exception("There is no article here!.".'<br />');
+        throw new Exception("There is no article here!".'<br />');
     }
     return true;
 }
 
 function checkBlog($status) {
     if ($status) {
-        throw new Exception("There is no blog here!.".'<br />');
+        throw new Exception("There is no blog here!".'<br />');
     }
     return true;
 }
 
 function checkUser($status) {
     if ($status) {
-        throw new Exception("There is no user here!.".'<br />');
+        throw new Exception("There is no user here!".'<br />');
     }
     return true;
 }
 
 /*
 Fixed function.
+參考自 [PHP避免使用巢狀條件式] (https://www.webteach.tw/?p=688)
+改用此寫法就可以改善可讀性的問題，避免閱讀上的困難。
 */
 function getUserArticles($user_id, $article_id) { 
     echo $user_id.', '.$article_id.'<br />'; // SYSTEM, 0123
     if ($user_id && $article_id) {
-        if ($user = User::getUser($user_id)) { // Class User 內去取用 getUser 這個 function
-            $blog = new FunctionInterface2();
-            $blockname = $blog -> sendBlog($user);
-            if ($blockname != 0) {// 這邊改寫一下 $user -> blog，因為還在研究 MVC in Laravel，blog 建立之後會補上。
-                $article = new FunctionInterface1();
-                $articlename = $article -> getArticle($blog);
-                if ($articlename != 0) {
-                    return $articlename;
-                }
-                else {
-                    // echo "There is no article!".'<br />';
-                    checkArticle($articlename);
-                }
-            }
-            else {
-                // echo "There is no blog!".'<br />';
-                checkBlog($blockname);
-            }
-        }
-        else {
-            // echo "There is no user!<br />";
-            checkUser($user);
-        }
+        if ($user = User::getUser($user_id) != 1) { checkUser($user);}
+        $blog = new FunctionInterface2();
+        $blockname = $blog -> sendBlog($user);
+        if ($blockname != 1) { checkBlog($blockname);}
+        $article = new FunctionInterface1();
+        $articlename = $article -> getArticle($blog);
+        if ($articlename != 1) { checkArticle($articlename);}
     }
     return null;
 }
