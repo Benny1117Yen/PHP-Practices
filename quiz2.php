@@ -8,6 +8,9 @@ class SimpleFreight {
     function __construct() {
         $this->freight;
     }
+    // function getVendor() {
+    //     return $this -> ;
+    // }
     function getFreight() {
         $input1 = "Dog";
         $input2 = "USA";
@@ -20,7 +23,7 @@ class SimpleFreight {
     }
 }
 
-class FreightAdapter {
+class FreightAdapter extends SimpleFreight {
     private $vendor;
     private $region;
     private $kilogram;

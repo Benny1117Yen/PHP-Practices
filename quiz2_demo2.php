@@ -50,6 +50,7 @@ class Adapter extends Target
  */
 function clientCode(Target $target)
 {
+    
     echo $target->request();
 }
 
