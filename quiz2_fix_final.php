@@ -1,5 +1,9 @@
 <?php
 
+/*
+參考自Ben的編程、系統學習紀錄
+Adapter模式(物件版)
+*/
 interface FalconInChina {
     public function request();
     public function requestTotal();
