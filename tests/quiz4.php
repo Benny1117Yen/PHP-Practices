@@ -1,17 +1,15 @@
 <?php
 
-class ChinaFreight implements FalconInChina {
-    private $element = 200;
-    private $weight = 60;
-    private $rate = 20;
+use PHPUnit\Framework\TestCase;
 
-    public function request() {
-        return $this -> requestTotal();
-    }
+class ClientTest extends TestCase {
+    public function __construct() {
+        $this -> c = new ChinaFreight();
+        $this -> t = new TaiwanFreight();
+        $this -> tAdapter = new TaiwanAdapter($this -> t);
 
-    public function requestTotal() {
-        $this -> element += ($this -> rate) * 60;
-        return $this -> element;
+        echo "China: ".$this -> c -> request()."<br />";
+        echo "Taiwan: ".$this -> tAdapter -> request();
     }
 }
 ?>
