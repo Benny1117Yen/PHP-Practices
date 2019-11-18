@@ -8,6 +8,7 @@ interface FalconInChina {
 // Assume KG = 60
 class ChinaFreight implements FalconInChina {
     private $element = 200;
+    private $weight = 60;
     private $rate = 20;
 
     public function request() {
@@ -27,6 +28,7 @@ interface FalconInTaiwan {
 
 class TaiwanFreight implements FalconInTaiwan {
     private $element = 150;
+    private $weight = 60;
     private $rate = 30;
 
     public function request() {
@@ -34,11 +36,12 @@ class TaiwanFreight implements FalconInTaiwan {
     }
 
     public function requestTotal() {
-        $this -> element += ($this -> rate) * 30;
+        $this -> element += ($this -> rate) * ($this -> weight);
         return $this -> element;
     }
 }
 
+// 建立 Adapter，在當中要求必須傳入實現TaiwanFreight介面的物件。
 class TaiwanAdapter implements FalconInTaiwan {
     private $element;
     public function __construct(FalconInTaiwan $elementObject) {
@@ -50,7 +53,7 @@ class TaiwanAdapter implements FalconInTaiwan {
     }
 
     public function requestTotal() {
-
+        // 空白是因為物件自己執行自己本身的方法requestTotal()，按照介面規定這是我們要實現的方法，但內容空白。
     }
 }
 
