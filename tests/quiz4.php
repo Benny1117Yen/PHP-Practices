@@ -39,4 +39,8 @@ class ChinaFreightTest extends TestCase {
         $this -> assertEquals($total, $freight);
     }
 }
+
+/*
+再來會寫測試 client 的部分
+*/
 ?>
