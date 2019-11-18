@@ -3,6 +3,34 @@
 /*
 放目標，也就是運費。
 */
+
+// old interface
+interface ShippingInterface {
+    public function request($vendor, $region, $weight);
+}
+class Shipping implements ShippingInterface {
+    public function request($vendor, $region, $weight): string {
+        return "$49.75";
+    }
+}
+// new interface
+interface AdvancedShippingInterface {
+    public function getVendorRegionWeight($vendor_name, $region_name, $weight_name);
+}
+class AdvancedShipping implements AdvancedShippingInterface {
+    public function getVendorRegionWeight($vendor_name, $region_name, $weight_name): string {
+        return $vendor_name.$region_name.$weight_name."<br />";
+    }
+    public function calculate() {
+        return "39.5<br />";
+    }
+}
+// adapter interface
+function ShippingAdapter() {
+    $shipping = new AdvancedShipping();
+    $shipping -> getVendorRegionWeight();
+    return ;
+}
 class Target
 {
     public function request(): string
@@ -50,4 +78,15 @@ function clientCode(Target $target)
 {
     echo $target->request();
 }
+
+$target = new Target;
+clientCode($target);
+echo "<br />";
+
+$adaptee = new Adaptee;
+echo "Adaptee: " . $adaptee->specificRequest();
+echo "<br />";
+
+$adapter = new Adapter($adaptee);
+clientCode($adapter);
 ?>
