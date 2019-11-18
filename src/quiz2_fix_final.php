@@ -3,6 +3,9 @@
 /*
 參考自Ben的編程、系統學習紀錄
 Adapter模式(物件版)
+目前選 Falcon 當例子，因為他同時具備大陸以及台灣地區，
+台灣地區的 interface 建立好之後，可以只換貨運商。
+反之，大陸地區或美國 interface 也是這樣建立。
 */
 interface FalconInChina {
     public function request();
