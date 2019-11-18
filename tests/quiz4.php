@@ -1,5 +1,6 @@
 <?php
 
+// demo可以跑
 require('./src/quiz2_fix_final.php');
 use PHPUnit\Framework\TestCase;
 

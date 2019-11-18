@@ -1,5 +1,7 @@
 <?php
 
+// 可閱讀性不高，exception，可以更直觀的單字。
+// 第一層跟名稱可以修改。
 /*
 這裡做 function interface.
 */
