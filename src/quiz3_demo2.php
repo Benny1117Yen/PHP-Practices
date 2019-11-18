@@ -88,4 +88,5 @@ function dijkstra(){
         echo $start_node_id.'=>'.$key.':'.$val.'<br />';
     }
 }
+$work = dijkstra();
 ?>
